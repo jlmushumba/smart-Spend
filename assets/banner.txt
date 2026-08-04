@@ -5,5 +5,3 @@
 4. Budget
 5. Reports
 6. Exit
-
-Select an option:
