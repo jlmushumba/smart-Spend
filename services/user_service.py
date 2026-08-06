@@ -26,3 +26,12 @@ def edit_profile(name = None, email = None, currency= None):
     """
     if not edit_profile:
         return None
+    
+    new_profile = {
+        "name" : name,
+        "email" : email,
+        "currency" : currency
+    }
+
+    with open ("data/profile.json", "w") as file:
+        json.dump(new_profile, file, indent=4)
