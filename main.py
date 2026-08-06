@@ -1,6 +1,8 @@
 # Displaying the banner and the menu
 from utils import helpers
 import sys
+from services.user_service import create_profile, view_profile
+
 
 while True:
 
@@ -10,7 +12,34 @@ while True:
     choice = input(">> ")
 
     if choice == "1":
-        print("Feature coming soon...")
+        print(helpers.read_file("assets/user_profile.txt"))
+
+        choice = input(">>")
+
+        if choice == "1":
+
+            name = input("Enter your name: ")
+            email = input("Enter your email: ")
+            currency = input("Enter the desired currency: ")
+            create_profile(name, email, currency)
+            print("Profile created succesflly!")
+
+        elif choice == "2":
+            profile = view_profile()
+            print(f"""
+            
+                Name: {profile["name"]}\n
+                Email: {profile["email"]}\n
+                Currency: {profile["currency"]}\n
+                """
+            )
+
+        elif choice == "3":
+            print("Feature coming soon..")
+                
+        else:
+            print("Invalid option!!!")
+
     elif choice == "2":
         print("Feature coming soon...")
 
