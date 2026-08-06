@@ -1,7 +1,7 @@
 # Displaying the banner and the menu
 from utils import helpers
 import sys
-from services.user_service import create_profile, view_profile
+from services.user_service import (create_profile, view_profile,edit_profile)
 
 
 while True:
@@ -35,7 +35,10 @@ while True:
             )
 
         elif choice == "3":
-            print("Feature coming soon..")
+            name = input("Enter your new name: ")
+            email = input("Enter your new email: ")
+            currency = input("Enter your new desired currency: ")
+            edit_profile(name, email, currency)
                 
         else:
             print("Invalid option!!!")
