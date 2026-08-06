@@ -1,0 +1,7 @@
+
+1. User Profile
+2. Income
+3. Expenses
+4. Budget
+5. Reports
+6. Exit
