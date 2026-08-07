@@ -1,6 +1,5 @@
 import json
 from models.user import User
-from sys import exit
 
 def create_profile(user_name = None, user_email = None, user_currency = None):
 
