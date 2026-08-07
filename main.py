@@ -1,18 +1,22 @@
 # Displaying the banner and the menu
-from utils import helpers
+from utils.helpers import read_file, edit_profile_data
 import sys
 from services.user_service import (create_profile, view_profile,edit_profile)
+from utils.menu import (
+    main_menu, user_profile_menu, income_menu, expenses_menu, budget_menu, reports_menu
+    )
 
+print(read_file("assets/logo.txt"))
 
 while True:
 
-    print(helpers.read_file("assets/logo.txt"))
-    print(helpers.read_file("assets/banner.txt"))
+    
+    print(main_menu())
 
     choice = input(">> ")
 
     if choice == "1":
-        print(helpers.read_file("assets/user_profile.txt"))
+        print(user_profile_menu())
 
         choice = input(">>")
 
@@ -25,20 +29,25 @@ while True:
             print("Profile created succesflly!")
 
         elif choice == "2":
-            profile = view_profile()
-            print(f"""
-            
-                Name: {profile["name"]}\n
-                Email: {profile["email"]}\n
-                Currency: {profile["currency"]}\n
-                """
-            )
+            try:
+
+                profile = view_profile()
+            except Exception as e:
+                print(f"Error: No profile found!")
+
+            else:
+
+                print(f"""
+                
+                    Name: {profile["name"]}\n
+                    Email: {profile["email"]}\n
+                    Currency: {profile["currency"]}\n
+                    """
+                )
 
         elif choice == "3":
-            name = input("Enter your new name: ")
-            email = input("Enter your new email: ")
-            currency = input("Enter your new desired currency: ")
-            edit_profile(name, email, currency)
+            data = edit_profile_data()
+            edit_profile(data)
                 
         else:
             print("Invalid option!!!")
