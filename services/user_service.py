@@ -18,15 +18,15 @@ def create_profile(user_name = None, user_email = None, user_currency = None):
 
 def view_profile():
     """
-    It views the content of models/profile.json (profile)
+    It views the content of data/profile.json (profile)
     """
     if not "data/profile.json":
         raise ValueError('No profile found!')
     try:
 
-        file = open ("data/profile.json", "r") 
-        contents = json.load(file)
-        return contents
+        with open ("data/profile.json", "r")  as file:
+            contents = json.load(file)
+            return contents
     except FileNotFoundError as e1:
         print(f"Error: {e1}")
     
