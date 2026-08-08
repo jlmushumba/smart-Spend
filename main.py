@@ -10,47 +10,55 @@ print(read_file("assets/logo.txt"))
 
 while True:
 
-    
+
     print(main_menu())
 
     choice = input(">> ")
 
     if choice == "1":
+        
         print(user_profile_menu())
+        while True:
+            choice_user = input(">>")
+        
+            if choice_user == "1":
 
-        choice = input(">>")
+                name = input("Enter your name: ")
+                email = input("Enter your email: ")
+                currency = input("Enter the desired currency: ")
+                create_profile(name, email, currency)
+                print("Profile created succesfully!")
+                print(user_profile_menu())
+                
 
-        if choice == "1":
+            elif choice_user == "2":
+                try:
 
-            name = input("Enter your name: ")
-            email = input("Enter your email: ")
-            currency = input("Enter the desired currency: ")
-            create_profile(name, email, currency)
-            print("Profile created succesflly!")
+                    profile = view_profile()
+                except Exception as e:
+                    print(f"Error: No profile found!")
 
-        elif choice == "2":
-            try:
+                else:
 
-                profile = view_profile()
-            except Exception as e:
-                print(f"Error: No profile found!")
+                    print(f"""
+                    
+                        Name: {profile["name"]}\n
+                        Email: {profile["email"]}\n
+                        Currency: {profile["currency"]}\n
+                        """
+                    )
+                    print(user_profile_menu())
 
+            elif choice_user == "3":
+                data = edit_profile_data()
+                edit_profile(data)
+                print(user_profile_menu())
+
+            elif choice_user == "4":
+                break
             else:
-
-                print(f"""
-                
-                    Name: {profile["name"]}\n
-                    Email: {profile["email"]}\n
-                    Currency: {profile["currency"]}\n
-                    """
-                )
-
-        elif choice == "3":
-            data = edit_profile_data()
-            edit_profile(data)
-                
-        else:
-            print("Invalid option!!!")
+                print("Invalid option!!!")
+            
 
     elif choice == "2":
         print("Feature coming soon...")
