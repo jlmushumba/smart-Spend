@@ -88,7 +88,6 @@ while True:
                 pass
 
             elif choice_income == "4":
-                print(main_menu())
                 break
                 
 
