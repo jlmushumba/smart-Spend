@@ -1,4 +1,6 @@
 # Helper function for reading a file
+import json
+from datetime import datetime
 
 def read_file(path: str):
 
@@ -39,4 +41,61 @@ def edit_profile_data():
     else:
         print("Invalid Input!")
 
+def add_income_parameters():
+    """
+    This function collects essential parameters for 
+    add_income() function in "services/income_service.py" 
+    wich wil be used in main.py
+    """
+
+    # id
+
+    try:
+
+        with open ("data/income.json", "r") as file:
+            income_data = json.load(file)
+            if income_data:
+                income_id = income_data[-1]["id"] + 1
+            #else:
+                #income_id = 1
+    except FileNotFoundError:
+        print("System Error!")
+    except json.decoder.JSONDecodeError:
+        income_id = 1
+
+    #source
+    income_source = input("Enter income source: ")
+
+    #amount
+
+    while True:
+        try:
+            income_amount = float(input("Enter amount in digits: "))
+            if income_amount < 0:
+                print("Amount cannot be negative.")
+                continue
+            break
+        except ValueError:
+            print("Invalid input! Please enter a valid number.")
+
+    #date
+    while True:
+        income_date = input("Enter date(DD/MM/YYYY): ")
+        try:
+
+            date_object = datetime.strptime(income_date, "%d/%m/%Y").date()
+            formatted_date = date_object.strftime("%d/%m/%Y")
+            income_date =formatted_date
+            break
+        except ValueError:
+            print("Invalid date format! Please enter in DD/MM/YYYY format (e.g., 10/08/2026).")
+    # description
+
+    income_description = input("Enter income short description: ")
+
+
+    return income_id, income_source, income_amount, income_date, income_description
+
+
+        
     
