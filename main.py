@@ -1,5 +1,7 @@
 # Displaying the banner and the menu
-from utils.helpers import read_file, edit_profile_data, add_income_parameters, delete_income
+from utils.helpers import read_file
+from services.user_service import edit_profile_data
+from services.income_service import add_income_parameters, delete_income
 import sys
 from services.user_service import (create_profile, view_profile,edit_profile)
 from utils.menu import (
@@ -105,8 +107,11 @@ while True:
                         print("Please enter a valid income ID!")
                 delete_income(id_to_delete)
                 print(income_menu())
-
             elif choice_income == "4":
+                # TODO "
+                # implement edit_income function"
+                pass
+            elif choice_income == "5":
                 break
                 
 
