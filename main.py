@@ -1,5 +1,5 @@
 # Displaying the banner and the menu
-from utils.helpers import read_file, edit_profile_data, add_income_parameters
+from utils.helpers import read_file, edit_profile_data, add_income_parameters, delete_income
 import sys
 from services.user_service import (create_profile, view_profile,edit_profile)
 from utils.menu import (
@@ -68,12 +68,13 @@ while True:
         while True:
             choice_income = input(">>")
 
-            if choice_income == "1":
+            if choice_income == "1": # add new income
+
                 income_id, source , amount, date, description = add_income_parameters()
                 add_income(income_id, source , amount, date, description)
                 print(income_menu())
 
-            elif choice_income == "2":
+            elif choice_income == "2": # view all incomes
                 
                 incomes = view_income()
                 for income in incomes:
@@ -84,8 +85,26 @@ while True:
                     print("=" * 45)
                 print(income_menu())
 
-            elif choice_income == "3":
-                pass
+            elif choice_income == "3": # delete income
+                # display all incomes
+
+                incomes = view_income()
+                for income in incomes:
+                    print("=" * 45)
+                    for key, value in income.items():
+                        print(f"{key}: {value}")
+                    print()
+                    print("=" * 45)
+                while True:
+
+                    try:
+
+                        id_to_delete = int(input("Enter ID for income to delete: "))
+                        break
+                    except ValueError:
+                        print("Please enter a valid income ID!")
+                delete_income(id_to_delete)
+                print(income_menu())
 
             elif choice_income == "4":
                 break
