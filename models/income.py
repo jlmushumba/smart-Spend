@@ -11,9 +11,10 @@ class Income:
 
     def to_dict(self):
         return {
-            "id" : id,
+            "id" : self.id,
             "source" : self.source,
             "amount" : self.amount,
+            "date" : self.date,
             "description" : self.description
         }
     
