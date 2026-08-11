@@ -87,8 +87,10 @@ while True:
             elif choice_income == "3":
                 pass
 
-            elif choice :
-                pass
+            elif choice_income == "4":
+                print(main_menu())
+                break
+                
 
     elif choice == "3":
         print("Feature coming soon...")
