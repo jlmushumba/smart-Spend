@@ -1,4 +1,5 @@
 1. Add Income
 2. View all incomes
 3. Delete Income
-4. Back
+4. Edit Income
+5. Back
