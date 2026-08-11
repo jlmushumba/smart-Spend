@@ -96,6 +96,33 @@ def add_income_parameters():
 
     return income_id, income_source, income_amount, income_date, income_description
 
+# delete income by ID helper function
 
+def delete_income(id_to_delete):
+    """
+    This function help you delete an income by its ID 
+    """
+
+    try:
+
+        with open ("data/income.json", "r+") as file:
+            incomes = json.load(file)
+
+            updated_incomes = [income for income in incomes if income.get('id') != id_to_delete]
+
+            if len(updated_incomes) == len(incomes):
+                print(f"Income with Income ID {id_to_delete} was not deleted!")
+                return False
+
+        with open("data/income.json", "w") as file:
+            json.dump(updated_incomes, file, indent=4)
+        print(f"Income with ID {id_to_delete} was deleted successfully!")
+        return True
         
-    
+        
+    except FileNotFoundError:
+        print("Incomes are not found!")
+    except json.JSONDecodeError:
+        print("No incomes found!")
+    except Exception as error:
+        print(f"Error: {error}")
