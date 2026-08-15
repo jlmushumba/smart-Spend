@@ -11,7 +11,10 @@ def user_profile_menu():
     
 
 def income_menu():
-    pass
+    with open ("assets/income_menu.txt", "r") as file:
+        income_menu_display = file.read()
+        return income_menu_display
+    
 
 def expenses_menu():
     pass

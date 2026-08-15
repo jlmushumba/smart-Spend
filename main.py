@@ -1,11 +1,9 @@
 # Displaying the banner and the menu
-from utils.helpers import read_file, edit_profile_data
+from utils.helpers import read_file
 import sys
-from services.user_service import (create_profile, view_profile,edit_profile)
-from utils.menu import (
-    main_menu, user_profile_menu, income_menu, expenses_menu, budget_menu, reports_menu
-    )
-
+from utils.menu import main_menu
+from handlers.user_handler import handle_user_profile
+from handlers.income_handler import handle_income
 print(read_file("assets/logo.txt"))
 
 while True:
@@ -16,53 +14,13 @@ while True:
     choice = input(">> ")
 
     if choice == "1":
-        
-        print(user_profile_menu())
-        while True:
-            choice_user = input(">>")
-        
-            if choice_user == "1":
-
-                name = input("Enter your name: ")
-                email = input("Enter your email: ")
-                currency = input("Enter the desired currency: ")
-                create_profile(name, email, currency)
-                print("Profile created succesfully!")
-                print(user_profile_menu())
-                
-
-            elif choice_user == "2":
-                try:
-
-                    profile = view_profile()
-                except Exception as e:
-                    print(f"Error: No profile found!")
-
-                else:
-
-                    print(f"""
-                    
-                        Name: {profile["name"]}\n
-                        Email: {profile["email"]}\n
-                        Currency: {profile["currency"]}\n
-                        """
-                    )
-                    print(user_profile_menu())
-
-            elif choice_user == "3":
-                data = edit_profile_data()
-                edit_profile(data)
-                print(user_profile_menu())
-
-            elif choice_user == "4":
-                break
-            else:
-                print("Invalid option!!!")
-            
-
+        # user handler
+        handle_user_profile()
+    
     elif choice == "2":
-        print("Feature coming soon...")
-
+        # income handler
+        handle_income()
+        
     elif choice == "3":
         print("Feature coming soon...")
 
