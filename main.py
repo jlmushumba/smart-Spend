@@ -1,14 +1,9 @@
 # Displaying the banner and the menu
 from utils.helpers import read_file
-from services.user_service import edit_profile_data
-from services.income_service import add_income_parameters, delete_income
 import sys
-from services.user_service import (create_profile, view_profile,edit_profile)
-from utils.menu import (
-    main_menu, user_profile_menu, income_menu, expenses_menu, budget_menu, reports_menu
-    )
-from services.income_service import (add_income, view_income)
-
+from utils.menu import main_menu
+from handlers.user_handler import handle_user_profile
+from handlers.income_handler import handle_income
 print(read_file("assets/logo.txt"))
 
 while True:
@@ -19,102 +14,13 @@ while True:
     choice = input(">> ")
 
     if choice == "1":
-        
-        print(user_profile_menu())
-        while True:
-            choice_user = input(">>")
-        
-            if choice_user == "1":
-
-                name = input("Enter your name: ")
-                email = input("Enter your email: ")
-                currency = input("Enter the desired currency: ")
-                create_profile(name, email, currency)
-                print("Profile created succesfully!")
-                print(user_profile_menu())
-                
-
-            elif choice_user == "2":
-                try:
-
-                    profile = view_profile()
-                except Exception as e:
-                    print(f"Error: No profile found!")
-
-                else:
-
-                    print(f"""
-                    
-                        Name: {profile["name"]}\n
-                        Email: {profile["email"]}\n
-                        Currency: {profile["currency"]}\n
-                        """
-                    )
-                    print(user_profile_menu())
-
-            elif choice_user == "3":
-                data = edit_profile_data()
-                edit_profile(data)
-                print(user_profile_menu())
-
-            elif choice_user == "4":
-                break
-            else:
-                print("Invalid option!!!")
-            
-
+        # user handler
+        handle_user_profile()
+    
     elif choice == "2":
-
-        print(income_menu())
-
-        while True:
-            choice_income = input(">>")
-
-            if choice_income == "1": # add new income
-
-                income_id, source , amount, date, description = add_income_parameters()
-                add_income(income_id, source , amount, date, description)
-                print(income_menu())
-
-            elif choice_income == "2": # view all incomes
-                
-                incomes = view_income()
-                for income in incomes:
-                    print("=" * 45)
-                    for key, value in income.items():
-                        print(f"{key}: {value}")
-                    print()
-                    print("=" * 45)
-                print(income_menu())
-
-            elif choice_income == "3": # delete income
-                # display all incomes
-
-                incomes = view_income()
-                for income in incomes:
-                    print("=" * 45)
-                    for key, value in income.items():
-                        print(f"{key}: {value}")
-                    print()
-                    print("=" * 45)
-                while True:
-
-                    try:
-
-                        id_to_delete = int(input("Enter ID for income to delete: "))
-                        break
-                    except ValueError:
-                        print("Please enter a valid income ID!")
-                delete_income(id_to_delete)
-                print(income_menu())
-            elif choice_income == "4":
-                # TODO "
-                # implement edit_income function"
-                pass
-            elif choice_income == "5":
-                break
-                
-
+        # income handler
+        handle_income()
+        
     elif choice == "3":
         print("Feature coming soon...")
 
