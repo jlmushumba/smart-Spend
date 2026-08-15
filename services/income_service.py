@@ -34,22 +34,55 @@ def view_income():
 
         with open ("data/income.json", "r") as file:
             incomes = json.load(file)
+            return incomes
            
     except FileNotFoundError:
         print("Error: income data is missing!")
     except Exception as error:
-        print(f"Error: {error}")
+        print("No incomes found!")
+        return None
+    
 
-    return incomes
-
-def edit_income():
+def edit_income(edit_choices: dict, edit_id: int):
     # TODO "
     # - ask what the user want to change. store it into the list
     # - Iterate over a dictionary and then change the variable 
-    # - but first make sure that it is a error free variable"
-    
-    pass
+    # - but first make sure that it is a error free variable
+    # - make it possible to edit multiple inputs in one go"
 
+    try:
+
+        with open ("data/income.json" ,"r") as file:
+            incomes = json.load(file)
+
+    except FileNotFoundError:
+        print("Incomes are not found!")
+    except json.JSONDecodeError as e:
+        print("Zero incomes found!")
+        print(f"JSONDecodeError: {e}")    
+    except Exception as error:
+        print(f"Error: {error}")    
+
+
+    for income in incomes:
+        if income['id'] == edit_id:
+            for key, value in edit_choices.items():
+                income[key] = value
+
+
+    try:
+
+        with open ("data/income.json", "w") as file:
+            json.dump(incomes, file, indent=4)
+
+    except FileNotFoundError:
+        print("Incomes are not found!")
+    except json.JSONDecodeError as e:
+        print("Zero incomes found!")
+        print(f"JSONDecodeError: {e}")    
+    except Exception as error:
+        print(f"Error: {error}")
+    
 def delete_income(id_to_delete):
     """
     This function help you delete an income by its ID 
@@ -87,8 +120,15 @@ def recent_id():
     """
     Return recent ID in data/income.json file
     """
-    with open ("data/income.json", "r") as file:
-        incomes = json.load(file)
+    try:
+
+        with open ("data/income.json", "r") as file:
+            incomes = json.load(file)
+            recent_id = incomes[-1]['id']
+    except FileNotFoundError as error:
+        print(f"Error: {error}")
+    except json.JSONDecodeError:
+        recent_id = 0
 
     if incomes:
         recent_id = incomes[-1]['id']
