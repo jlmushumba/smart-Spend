@@ -22,6 +22,7 @@ def handle_income():
                 incomes = view_income()
             
                 if not incomes:
+                    print("No incomes found!")
                     print(income_menu())
                 elif incomes:
                     for income in incomes:
@@ -30,8 +31,10 @@ def handle_income():
                             print(f"{key}: {value}")
                         print()
                         print("=" * 45)
+                    print(income_menu())
             except Exception as error:
                 print(f"No incomes found!")
+
             
             
 
@@ -39,7 +42,10 @@ def handle_income():
             # display all incomes
 
             incomes = view_income()
-            try:
+            if not incomes:
+                print("No incomes found to delete!")
+                print(income_menu())
+            else:
                 for income in incomes:
                     print("=" * 45)
                     for key, value in income.items():
@@ -48,27 +54,26 @@ def handle_income():
                     print("=" * 45)
 
 
-                    while True:
+                while True:
 
-                        try:
+                    try:
 
-                            id_to_delete = int(input("Enter ID for income to delete: "))
-                            break
-                        except ValueError:
-                            print("Please enter a valid income ID!")
-                        delete_income(id_to_delete)
-                        print(income_menu())
-
-            except Exception:
-                print("No incomes found to delete!")
+                        id_to_delete = int(input("Enter ID for income to delete: "))
+                        
+                        break
+                    except ValueError:
+                        print("Please enter a valid income ID!")
+                        
+                delete_income(id_to_delete)
                 print(income_menu())
+
 
             
         elif choice_income == "4":
             # TODO "
             # implement edit_income function"
             try:
-                with open ("income.json", "r") as file:
+                with open ("data/income.json", "r") as file:
                     data = json.load(file)
                     if data:
                         while True:

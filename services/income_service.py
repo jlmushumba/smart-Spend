@@ -124,16 +124,17 @@ def recent_id():
 
         with open ("data/income.json", "r") as file:
             incomes = json.load(file)
-            recent_id = incomes[-1]['id']
+            if incomes:
+                    recent_id = incomes[-1]['id']
+            else:
+                    recent_id = 0
+            #recent_id = incomes[-1]['id']
     except FileNotFoundError as error:
         print(f"Error: {error}")
     except json.JSONDecodeError:
         recent_id = 0
 
-    if incomes:
-        recent_id = incomes[-1]['id']
-    else:
-        recent_id = 0
+    
 
     return recent_id
 
