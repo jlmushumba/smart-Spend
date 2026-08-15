@@ -4,6 +4,7 @@ import sys
 from utils.menu import main_menu
 from handlers.user_handler import handle_user_profile
 from handlers.income_handler import handle_income
+from handlers.expense_handler import handle_expense
 print(read_file("assets/logo.txt"))
 
 while True:
@@ -22,7 +23,7 @@ while True:
         handle_income()
         
     elif choice == "3":
-        print("Feature coming soon...")
+        handle_expense()
 
     elif choice == "4":
         print("Feature coming soon...")
