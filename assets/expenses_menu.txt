@@ -1,3 +1,6 @@
+====================================
+           EXPENSES MENU
+====================================
 1. Add Expense
 2. View all expenses
 3. Delete Expense

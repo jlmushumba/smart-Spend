@@ -1,0 +1,8 @@
+====================================
+           BUDGET MENU
+====================================
+1. Set Category Budget
+2. View Budget vs. Spending
+3. Edit Budget Limit
+4. Delete Budget
+5. Back to Main Menu
