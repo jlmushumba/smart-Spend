@@ -22,7 +22,9 @@ def expenses_menu():
             return expense_menu_display
 
 def budget_menu():
-    pass
+    with open ("assets/budget_menu.txt", "r") as file:
+            budget_menu_display = file.read()
+            return budget_menu_display
 
 def reports_menu():
     pass
