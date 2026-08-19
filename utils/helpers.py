@@ -41,4 +41,4 @@ def recent_id(file_path):
 
     return 0
 
-    return recent_id
+    #return recent_id
