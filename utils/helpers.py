@@ -40,5 +40,3 @@ def recent_id(file_path):
         #recent_id = 0
 
     return 0
-
-    #return recent_id
