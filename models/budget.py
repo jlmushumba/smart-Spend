@@ -1,6 +1,6 @@
 class Budget:
 
-    def __int__(self, id, category, monthly_limit, month_year):
+    def __init__(self, id, category, monthly_limit, month_year):
         self.id = id
         self.category = category
         self.monthly_limit = monthly_limit
