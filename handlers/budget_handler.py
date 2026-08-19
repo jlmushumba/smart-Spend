@@ -70,7 +70,7 @@ def handle_budget():
 
         elif budget_choice == "4": # Delete budget by ID
             delete_budget()
-            pass
+            
 
         elif budget_choice == "5": # back to main menu
             break
