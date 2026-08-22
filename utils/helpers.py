@@ -40,3 +40,11 @@ def recent_id(file_path):
         #recent_id = 0
 
     return 1
+
+def format_record(record):
+    output = ""
+
+    for key, value in record.items():
+        output += f"    {key}: {value}\n"
+
+    return output
