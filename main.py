@@ -6,6 +6,7 @@ from handlers.user_handler import handle_user_profile
 from handlers.income_handler import handle_income
 from handlers.expense_handler import handle_expense
 from handlers.budget_handler import handle_budget
+from handlers.report_handler import report_handler
 print(read_file("assets/logo.txt"))
 
 while True:
@@ -30,7 +31,7 @@ while True:
         handle_budget()
 
     elif choice == "5":
-        print("Feature coming soon...")
+        report_handler()
 
     elif choice == "6":
         print("Closing Smart Spend...")
