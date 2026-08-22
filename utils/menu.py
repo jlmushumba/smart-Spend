@@ -27,7 +27,9 @@ def budget_menu():
             return budget_menu_display
 
 def reports_menu():
-    pass
+    with open ("assets/reports_menu.txt", "r") as file:
+        report_menu_display = file.read()
+        return report_menu_display
 
 if __name__ == "__main__":
 
