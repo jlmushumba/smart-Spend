@@ -1,0 +1,8 @@
+====================================
+           BUDGET MENU
+====================================
+1. Set Budget
+2. View Budget
+3. Edit Budget 
+4. Delete Budget
+5. Back 
